@@ -362,7 +362,7 @@ body.has-fixed-nav {
     display: grid;
     grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
     gap: 56px;
-    align-items: center;
+    align-items: start;
     margin-bottom: 80px;
 }
 .profile-image-wrap {
@@ -387,7 +387,7 @@ body.has-fixed-nav {
     text-transform: uppercase;
 }
 .profile-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     border-bottom: 1px solid #333;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -395,6 +395,7 @@ body.has-fixed-nav {
     letter-spacing: 2px;
 }
 .profile-section p {
+    font-size: 0.95rem;
     line-height: 1.8;
     color: #ccc;
     margin-bottom: 15px;
@@ -403,17 +404,18 @@ body.has-fixed-nav {
     color: #8e8e8e;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     margin-bottom: 12px;
 }
 .profile-name {
-    font-size: 2.9rem;
+    font-size: 2.7rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     margin: 0 0 18px;
 }
 .profile-lead {
     max-width: 620px;
+    padding-top: 6px;
 }
 .timeline-list {
     display: flex;
@@ -433,18 +435,22 @@ body.has-fixed-nav {
 }
 .timeline-date {
     color: #8e8e8e;
-    font-size: 0.9rem;
+    font-size: 0.84rem;
     letter-spacing: 1px;
 }
 .timeline-content h3,
 .skill-card h3 {
     margin: 0 0 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #fff;
+}
+.timeline-content p,
+.skill-card p {
+    font-size: 0.93rem;
 }
 .profile-note {
     color: #9d9d9d;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
 }
 .skill-grid {
     display: grid;
