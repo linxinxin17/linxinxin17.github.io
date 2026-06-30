@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive & Web | XIN LIN</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="has-fixed-nav">
+
+    <header class="site-header">
+        <a href="../../index.html" class="brand">XIN LIN</a>
+        <nav class="nav-menu">
+            <a href="../../index.html" class="nav-btn">HOME</a>
+            
+            <div class="nav-item dropdown">
+                <a href="../selection.html" class="nav-btn active">WORKS</a>
+                <div class="dropdown-content">
+                    <a href="gallery-art.html">FINE ART & INSTALLATION</a>
+                    <a href="gallery-digital.html">DIGITAL ART</a>
+                    <a href="gallery-web.html">INTERACTIVE & WEB</a>
+                </div>
+            </div>
+
+            <a href="../../lab/lab.html" class="nav-btn">LAB</a>
+            <a href="../profile.html" class="nav-btn">PROFILE</a>
+        </nav>
+    </header>
+
+    <div class="gallery-container">
+        <a href="../selection.html" class="back-btn">CATEGORIES</a>
+        <h1>INTERACTIVE & WEB</h1>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterGallery('all')">ALL</button>
+            <button class="filter-btn" onclick="filterGallery('generative')">#Generative</button>
+            <button class="filter-btn" onclick="filterGallery('web')">#Web</button>
+            <button class="filter-btn" onclick="filterGallery('bio-tech')">#Bio-Tech</button>
+            <button class="filter-btn" onclick="filterGallery('data-viz')">#Data Visualisation</button>
+        </div>
+
+        <div class="gallery-grid">
+            <a href="../work/interactive/work1.html" class="gallery-item" data-category="web, bio-tech, data-viz">
+                <img src="../../assets/Obras/2025/Brainwave Organism/4.png" class="gallery-thumb web" alt="Brainwave Organism">
+                <div class="gallery-title">Brainwave Organism</div>
+            </a>
+        </div>
+    </div>
+
+    <script src="../../js/gallery.js"></script>
+</body>
+</html>
