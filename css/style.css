@@ -2152,9 +2152,9 @@ body.has-fixed-nav {
         'media info'
         'media action';
     grid-template-rows: 1fr auto;
-    gap: 22px 34px;
+    gap: 18px 28px;
     align-items: start;
-    padding: clamp(22px, 3vw, 38px);
+    padding: clamp(20px, 2vw, 28px);
     border: 1px solid rgba(255, 255, 255, 0.11);
     background:
         radial-gradient(circle at 12% 0%, rgba(75, 214, 210, 0.055), transparent 35%),
@@ -2182,8 +2182,9 @@ body.has-fixed-nav {
 .lab-preview {
     grid-area: media;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 1911 / 912;
+    object-fit: contain;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: #020302;
 }

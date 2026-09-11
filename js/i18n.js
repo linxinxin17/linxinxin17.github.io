@@ -395,8 +395,8 @@ const profileCopy = {
             { date: 'Sep 2020 - Jul 2024', title: 'Universitat Politècnica de València', detail: "Bachelor's Program in Fine Arts", note: 'Thesis: Bridge of Nonverbal Communication: An Experimental Poetic Audiovisual Narrative Controlled by EEG Signals.' }
         ],
         exhibitions: [
-            { date: 'Jul 2026', title: 'Breath Between Us', role: 'Curatorial', detail: 'MikiLab Exhibition 2026, Raiosha Gallery, Keio University, Yokohama, Japan' },
-            { date: 'Jan 2026', title: 'Queerxata Art Workshop', role: 'Curatorial', detail: 'Centre del Carme Cultura Contemporània, Valencia, Spain' },
+            { date: 'Jul 2026', title: 'Breath Between Us', role: 'Curator / Exhibiting Artist', detail: 'MikiLab Exhibition 2026, Raiosha Gallery, Keio University, Yokohama, Japan' },
+            { date: 'Jan 2026', title: 'Queerxata Art Workshop', role: 'Curator', detail: 'Centre del Carme Cultura Contemporània, Valencia, Spain' },
             { date: 'Oct 2025', title: 'Volumens 2025 International Art Festival', detail: 'Centre del Carme Cultura Contemporània, Valencia, Spain' },
             { date: 'Feb 2025', title: 'Spanish Radio Art 101st Anniversary Exhibition', detail: 'SGAE, Valencia, Spain' },
             { date: 'Jun 2024', title: 'Pengci, Ceramic Works Exhibition', detail: 'Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts' },
@@ -430,8 +430,8 @@ const profileCopy = {
             { date: 'Sep 2020 - Jul 2024', title: 'Universitat Politècnica de València', detail: 'Grado en Bellas Artes', note: 'TFG: Puente de comunicación no verbal: narrativa poética audiovisual experimental controlada por señales EEG.' }
         ],
         exhibitions: [
-            { date: 'Jul 2026', title: 'Breath Between Us', role: 'Curaduría', detail: 'MikiLab Exhibition 2026, Raiosha Gallery, Keio University, Yokohama, Japón' },
-            { date: 'Ene 2026', title: 'Taller artístico Queerxata', role: 'Curaduría', detail: 'Centre del Carme Cultura Contemporània, Valencia, España' },
+            { date: 'Jul 2026', title: 'Breath Between Us', role: 'Comisaria / Artista expositora', detail: 'MikiLab Exhibition 2026, Raiosha Gallery, Keio University, Yokohama, Japón' },
+            { date: 'Ene 2026', title: 'Taller artístico Queerxata', role: 'Comisaria', detail: 'Centre del Carme Cultura Contemporània, Valencia, España' },
             { date: 'Oct 2025', title: 'Festival Internacional de Arte Volumens 2025', detail: 'Centre del Carme Cultura Contemporània, Valencia, España' },
             { date: 'Feb 2025', title: 'Exposición del 101.º aniversario del arte radiofónico español', detail: 'SGAE, Valencia, España' },
             { date: 'Jun 2024', title: 'Pengci, exposición de obras cerámicas', detail: 'Galería del Corredor, Departamento de Escultura, Central Academy of Fine Arts' },
@@ -465,7 +465,7 @@ const profileCopy = {
             { date: '2020.09 - 2024.07', title: '瓦伦西亚理工大学', detail: '纯艺术专业本科', note: '本科毕业论文：非语言沟通的桥梁：由脑电信号控制的实验性诗意视听叙事。' }
         ],
         exhibitions: [
-            { date: '2026.07', title: '《呼吸之间》', role: '策展', detail: 'MikiLab Exhibition 2026，庆应义塾大学 Raiosha Gallery，日本横滨' },
+            { date: '2026.07', title: '《呼吸之间》', role: '策展 / 参展艺术家', detail: 'MikiLab Exhibition 2026，庆应义塾大学 Raiosha Gallery，日本横滨' },
             { date: '2026.01', title: 'Queerxata 艺术工作坊', role: '策展', detail: 'Centre del Carme Cultura Contemporània，西班牙瓦伦西亚' },
             { date: '2025.10', title: 'Volumens 2025 国际艺术节', detail: 'Centre del Carme Cultura Contemporània，西班牙瓦伦西亚' },
             { date: '2025.02', title: '西班牙广播艺术 101 周年展览', detail: 'SGAE，西班牙瓦伦西亚' },
