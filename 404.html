@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Page Not Found | Xin Lin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+        const legacyPrefix = '/xin-lin-website';
+        if (location.pathname === legacyPrefix || location.pathname.startsWith(`${legacyPrefix}/`)) {
+            const nextPath = location.pathname.slice(legacyPrefix.length) || '/';
+            location.replace(`${nextPath}${location.search}${location.hash}`);
+        }
+    </script>
+</head>
+<body class="not-found-page">
+    <main class="not-found-content">
+        <p class="not-found-code">404</p>
+        <h1>Page not found</h1>
+        <p>The page may have moved or no longer exists.</p>
+        <a href="/">Return to Xin Lin Portfolio</a>
+    </main>
+</body>
+</html>

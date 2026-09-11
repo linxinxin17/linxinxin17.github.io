@@ -75,6 +75,41 @@ ul { list-style: none; padding: 0; }
     border: 0;
 }
 
+.not-found-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+}
+
+.not-found-content {
+    width: min(100%, 34rem);
+    text-align: center;
+}
+
+.not-found-code {
+    margin: 0 0 1rem;
+    color: var(--text-muted, #888);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+}
+
+.not-found-content h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 8vw, 4rem);
+}
+
+.not-found-content p {
+    color: var(--text-muted, #888);
+}
+
+.not-found-content a {
+    display: inline-block;
+    margin-top: 2rem;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.25rem;
+}
+
 .nav-menu { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 .nav-btn {
     border: 1px solid rgba(255,255,255,0.3); padding: 15px 40px;
