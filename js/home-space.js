@@ -111,7 +111,6 @@
   if(matchMedia('(pointer:coarse)').matches) document.querySelector('[data-space-copy="hint"]').textContent=copy.touch;
   exhibits.forEach(({card,title,image})=>{const text=typeof galleryTitles!=='undefined'?galleryTitles[card.getAttribute('href')]?.[lang]:null;if(text){title.textContent=text;image.alt=text;}});
   scene.setAttribute('aria-label',copy.welcome);
-  document.title = `${lang==='zh'?'林欣':'Xin Lin'} | ${copy.welcome}`;
  }
  function render(now){
   frame=0; const dt=Math.min((now-last)/1000||0,0.05);last=now;

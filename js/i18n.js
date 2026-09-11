@@ -714,7 +714,12 @@ function translatePage(language) {
     const copy = ui[language];
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
 
-    document.querySelectorAll('.brand').forEach((brand) => setText(brand, copy.brandName));
+    document.querySelectorAll('.brand').forEach((brand) => {
+        setText(brand, brand.closest('.space-header') ? 'XIN LIN' : copy.brandName);
+    });
+    if (document.body.classList.contains('space-page')) {
+        document.title = `Xin Lin | ${copy.homeTitle}`;
+    }
 
 
     document.querySelectorAll('.nav-btn').forEach((link) => {
