@@ -42,10 +42,10 @@ ul { list-style: none; padding: 0; }
     opacity: 0;
     animation: imageAnimation 24s linear infinite;
 }
-.bg-slideshow li:nth-child(1) { animation-delay: 0s; background-image: url('../assets/Obras/2024/Imágenes de Resonancia/images of resonance5.jpg'); }
-.bg-slideshow li:nth-child(2) { animation-delay: 6s; background-image: url('../assets/Obras/2024/Dado/1.jpg'); }
-.bg-slideshow li:nth-child(3) { animation-delay: 12s; background-image: url('../assets/Obras/2024/Espacio de Fantasía Cerebral Cósmica/1.jpg'); }
-.bg-slideshow li:nth-child(4) { animation-delay: 18s; background-image: url('../assets/Obras/2024/Oculto/1.jpg'); }
+.bg-slideshow li:nth-child(1) { animation-delay: 0s; background-image: url('../assets/Obras/2024/Imágenes de Resonancia/images of resonance5.web.webp'); }
+.bg-slideshow li:nth-child(2) { animation-delay: 6s; }
+.bg-slideshow li:nth-child(3) { animation-delay: 12s; }
+.bg-slideshow li:nth-child(4) { animation-delay: 18s; }
 
 @keyframes imageAnimation { 
     0% { opacity: 0; animation-timing-function: ease-in; }
@@ -139,14 +139,14 @@ ul { list-style: none; padding: 0; }
 .selection-card:hover .card-bg { opacity: 0.6; }
 
 /* Specific Background Images for Selection Cards */
-.card-bg-art { background-image: url('../assets/Obras/2024/Imágenes de Resonancia/Xin Lin_8_detalles_Puentes de comunicación no verbal.jpg'); }
+.card-bg-art { background-image: url('../assets/Obras/2024/Imágenes de Resonancia/Xin Lin_8_detalles_Puentes de comunicación no verbal.web.webp'); }
 .card-bg-digital {
     background-image: url('../assets/Obras/2025/Chinese-style Painted World/chinese-style painted world cover.png');
     background-position: 62% center;
 }
 .card-bg-web {
     background-color: #020405;
-    background-image: url('../assets/Obras/2025/PRISMA.live/prisma live category.png');
+    background-image: url('../assets/Obras/2025/PRISMA.live/prisma live category.web.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 155% auto;
