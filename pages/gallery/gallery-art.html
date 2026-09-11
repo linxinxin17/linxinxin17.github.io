@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fine Art & Installation | XIN LIN</title>
+    <title>Artworks | XIN LIN</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body class="has-fixed-nav">
@@ -16,9 +16,9 @@
             <div class="nav-item dropdown">
                 <a href="../selection.html" class="nav-btn active">WORKS</a>
                 <div class="dropdown-content">
-                    <a href="gallery-art.html">FINE ART & INSTALLATION</a>
+                    <a href="gallery-art.html">ARTWORKS</a>
                     <a href="gallery-digital.html">DIGITAL ART</a>
-                    <a href="gallery-web.html">INTERACTIVE & WEB</a>
+                    <a href="gallery-web.html">INTERACTIVE MEDIA</a>
                 </div>
             </div>
 
@@ -29,82 +29,98 @@
 
     <div class="gallery-container">
         <a href="../selection.html" class="back-btn">CATEGORIES</a>
-        <h1>FINE ART & INSTALLATION</h1>
+        <h1>ARTWORKS</h1>
         
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterGallery('all')">ALL</button>
-            <button class="filter-btn" onclick="filterGallery('installation')">#Installation</button>
-            <button class="filter-btn" onclick="filterGallery('interactive-art')">#Interactive Art</button>
-            <button class="filter-btn" onclick="filterGallery('sculpture')">#Sculpture</button>
-            <button class="filter-btn" onclick="filterGallery('painting')">#Painting</button>
-            <button class="filter-btn" onclick="filterGallery('performance')">#Performance</button>
-            <button class="filter-btn" onclick="filterGallery('sketch')">#Sketch</button>
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="installation">#Installation</button>
+            <button class="filter-btn" data-filter="interactive-art">#Interactive Art</button>
+            <button class="filter-btn" data-filter="sculpture">#Sculpture</button>
+            <button class="filter-btn" data-filter="painting">#Painting</button>
+            <button class="filter-btn" data-filter="performance">#Performance</button>
         </div>
 
         <div class="gallery-grid">
+            <a href="../work/fine_art/work16.html" class="gallery-item" data-category="installation, interactive-art">
+                <img src="../../assets/Obras/2026/Breath Between Us/breath between us1.jpg" class="gallery-thumb art" alt="Breath Between Us" fetchpriority="high" decoding="async">
+                <div class="gallery-title">Breath Between Us</div>
+            </a>
+            <a href="../work/fine_art/work18.html" class="gallery-item" data-category="sculpture">
+                <img src="../../assets/Obras/2025/3D Printing/3d printing1.jpg" class="gallery-thumb art" alt="3D Printing" decoding="async">
+                <div class="gallery-title">3D Printing</div>
+            </a>
             <a href="../work/fine_art/work14.html" class="gallery-item" data-category="installation, interactive-art">
-                <img src="../../assets/Obras/2025/Contaminacion Luminica/p6_1.jpg" class="gallery-thumb art" alt="Contaminación Lumínica">
+                <img src="../../assets/Obras/2025/Contaminacion Luminica/p6_1.jpg" class="gallery-thumb art" alt="Contaminación Lumínica" decoding="async">
                 <div class="gallery-title">Contaminación Lumínica</div>
             </a>
             <a href="../work/fine_art/work13.html" class="gallery-item" data-category="installation">
-                <img src="../../assets/Obras/2025/Letras/9.jpg" class="gallery-thumb art" alt="Columpio de Sombras">
+                <img src="../../assets/Obras/2025/Letras/9.jpg" class="gallery-thumb art" alt="Columpio de Sombras" loading="lazy" decoding="async">
                 <div class="gallery-title">Columpio de Sombras</div>
             </a>
-            <a href="../work/fine_art/work12.html" class="gallery-item" data-category="installation">
-                <img src="../../assets/Obras/2025/InnerSight 2.0/1.jpg" class="gallery-thumb art" alt="InnerSight 2.0">
+            <a href="../work/fine_art/work12.html" class="gallery-item" data-category="installation, interactive-art">
+                <img src="../../assets/Obras/2025/InnerSight 2.0/1.jpg" class="gallery-thumb art" alt="InnerSight 2.0" loading="lazy" decoding="async">
                 <div class="gallery-title">InnerSight 2.0</div>
             </a>
-            <a href="../work/fine_art/work15.html" class="gallery-item" data-category="installation">
-                <img src="../../assets/Obras/2025/InnerSight 1.0/1.jpg" class="gallery-thumb art" alt="InnerSight 1.0">
+            <a href="../work/fine_art/work15.html" class="gallery-item" data-category="installation, interactive-art">
+                <img src="../../assets/Obras/2025/InnerSight 1.0/1.jpg" class="gallery-thumb art" alt="InnerSight 1.0" loading="lazy" decoding="async">
                 <div class="gallery-title">InnerSight 1.0</div>
             </a>
             <a href="../work/fine_art/work11.html" class="gallery-item" data-category="installation, interactive-art">
-                <img src="../../assets/Obras/2025/Punto Ciego/1.jpg" class="gallery-thumb art" alt="Punto Ciego">
+                <img src="../../assets/Obras/2025/Punto Ciego/1.jpg" class="gallery-thumb art" alt="Punto Ciego" loading="lazy" decoding="async">
                 <div class="gallery-title">Punto Ciego</div>
             </a>
             <a href="../work/fine_art/work1.html" class="gallery-item" data-category="installation, interactive-art">
-                <img src="../../assets/Obras/2024/Im璋ゞenes de Resonancia/Xin Lin_1_Puentes de comunicaci璐竛 no verbal.jpg" class="gallery-thumb art" alt="Imágenes de Resonancia">
+                <img src="../../assets/Obras/2024/Imágenes de Resonancia/images of resonance5.jpg" class="gallery-thumb art" alt="Imágenes de Resonancia" loading="lazy" decoding="async">
                 <div class="gallery-title">Imágenes de Resonancia</div>
             </a>
+            <a href="../work/fine_art/work17.html" class="gallery-item" data-category="painting">
+                <img src="../../assets/Obras/2024/Chinese Painting Copies/chinese painting copies2.jpg" class="gallery-thumb art" alt="Chinese Painting: Song and Yuan Dynasty Landscape Copies" loading="lazy" decoding="async">
+                <div class="gallery-title">Chinese Painting Copies</div>
+            </a>
             <a href="../work/fine_art/work2.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2024/Espacio de Fantas閾哸 Cerebral C璐竤mica/1.jpg" class="gallery-thumb art" alt="Espacio de Fantasía Cerebral Cósmica">
+                <img src="../../assets/Obras/2024/Espacio de Fantasía Cerebral Cósmica/1.jpg" class="gallery-thumb art" alt="Espacio de Fantasía Cerebral Cósmica" loading="lazy" decoding="async">
                 <div class="gallery-title">Espacio de Fantasía Cerebral Cósmica</div>
             </a>
             <a href="../work/fine_art/work3.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2024/Serie de dioses itinerantes/1.jpg" class="gallery-thumb art" alt="Serie de dioses itinerantes">
+                <img src="../../assets/Obras/2024/Serie de dioses itinerantes/1.jpg" class="gallery-thumb art" alt="Serie de dioses itinerantes" loading="lazy" decoding="async">
                 <div class="gallery-title">Serie de dioses itinerantes</div>
             </a>
-            <a href="../work/fine_art/work4.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2024/Dado/1.jpg" class="gallery-thumb art" alt="Dado">
+            <a href="../work/fine_art/work4.html" class="gallery-item" data-category="sculpture, interactive-art">
+                <img src="../../assets/Obras/2024/Dado/1.jpg" class="gallery-thumb art" alt="Dado" loading="lazy" decoding="async">
                 <div class="gallery-title">Dado</div>
             </a>
             <a href="../work/fine_art/work5.html" class="gallery-item" data-category="installation, performance">
-                <img src="../../assets/Obras/2024/Oculto/1.jpg" class="gallery-thumb art" alt="Oculto">
+                <img src="../../assets/Obras/2024/Oculto/1.jpg" class="gallery-thumb art" alt="Oculto" loading="lazy" decoding="async">
                 <div class="gallery-title">Oculto</div>
             </a>
             <a href="../work/fine_art/work6.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2023/Golpecito/1.jpg" class="gallery-thumb art" alt="Golpecito">
+                <img src="../../assets/Obras/2023/Golpecito/1.jpg" class="gallery-thumb art" alt="Golpecito" loading="lazy" decoding="async">
                 <div class="gallery-title">Golpecito</div>
             </a>
             <a href="../work/fine_art/work7.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2023/Tributo a Jingdezhen_Colisi璐竛 y R鑼卲lica/1.jpg" class="gallery-thumb art" alt="Tributo a Jingdezhen">
+                <img src="../../assets/Obras/2023/Tributo a Jingdezhen_Colisión y Réplica/1.jpg" class="gallery-thumb art" alt="Tributo a Jingdezhen" loading="lazy" decoding="async">
                 <div class="gallery-title">Tributo a Jingdezhen</div>
             </a>
-            <a href="../work/fine_art/work8.html" class="gallery-item" data-category="installation, sculpture">
-                <img src="../../assets/Obras/2023/Serie Reflejo inteligente/1.jpg" class="gallery-thumb art" alt="Serie Reflejo inteligente">
+            <a href="../work/fine_art/work8.html" class="gallery-item" data-category="sculpture, interactive-art">
+                <img src="../../assets/Obras/2023/Serie Reflejo inteligente/1.jpg" class="gallery-thumb art" alt="Serie Reflejo inteligente" loading="lazy" decoding="async">
                 <div class="gallery-title">Serie Reflejo inteligente</div>
             </a>
             <a href="../work/fine_art/work9.html" class="gallery-item" data-category="installation">
-                <img src="../../assets/Obras/2023/Frontera insuperables/1.jpg" class="gallery-thumb art" alt="Frontera insuperables">
+                <img src="../../assets/Obras/2023/Frontera insuperables/1.jpg" class="gallery-thumb art" alt="Frontera insuperables" loading="lazy" decoding="async">
                 <div class="gallery-title">Frontera insuperables</div>
             </a>
-            <a href="../work/fine_art/work10.html" class="gallery-item" data-category="installation, painting">
-                <img src="../../assets/Obras/2022/El mundo/1.jpg" class="gallery-thumb art" alt="El mundo">
+            <a href="../work/fine_art/work10.html" class="gallery-item" data-category="painting, interactive-art">
+                <img src="../../assets/Obras/2022/El mundo/1.jpg" class="gallery-thumb art" alt="El mundo" loading="lazy" decoding="async">
                 <div class="gallery-title">El mundo</div>
+            </a>
+            <a href="../work/fine_art/work19.html" class="gallery-item" data-category="sculpture">
+                <img src="../../assets/Obras/2022/Architectural Model/architectural model2.jpg" class="gallery-thumb art" alt="Architectural Model" loading="lazy" decoding="async">
+                <div class="gallery-title">Architectural Model</div>
             </a>
         </div>
     </div>
 
     <script src="../../js/gallery.js"></script>
+    <script src="../../js/i18n.js"></script>
 </body>
 </html>

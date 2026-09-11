@@ -3,3 +3,6 @@
 serve.err.log
 serve.out.log
 Thumbs.db
+__pycache__/
+*.py[cod]
+tmp/

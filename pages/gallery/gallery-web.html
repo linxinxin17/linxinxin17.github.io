@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive & Web | XIN LIN</title>
+    <title>Interactive Media | XIN LIN</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body class="has-fixed-nav">
@@ -16,9 +16,9 @@
             <div class="nav-item dropdown">
                 <a href="../selection.html" class="nav-btn active">WORKS</a>
                 <div class="dropdown-content">
-                    <a href="gallery-art.html">FINE ART & INSTALLATION</a>
+                    <a href="gallery-art.html">ARTWORKS</a>
                     <a href="gallery-digital.html">DIGITAL ART</a>
-                    <a href="gallery-web.html">INTERACTIVE & WEB</a>
+                    <a href="gallery-web.html">INTERACTIVE MEDIA</a>
                 </div>
             </div>
 
@@ -29,24 +29,27 @@
 
     <div class="gallery-container">
         <a href="../selection.html" class="back-btn">CATEGORIES</a>
-        <h1>INTERACTIVE & WEB</h1>
+        <h1>INTERACTIVE MEDIA</h1>
         
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterGallery('all')">ALL</button>
-            <button class="filter-btn" onclick="filterGallery('generative')">#Generative</button>
-            <button class="filter-btn" onclick="filterGallery('web')">#Web</button>
-            <button class="filter-btn" onclick="filterGallery('bio-tech')">#Bio-Tech</button>
-            <button class="filter-btn" onclick="filterGallery('data-viz')">#Data Visualisation</button>
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="web">#Web</button>
+            <button class="filter-btn" data-filter="data-viz">#Data Visualisation</button>
         </div>
 
         <div class="gallery-grid">
-            <a href="../work/interactive/work1.html" class="gallery-item" data-category="web, bio-tech, data-viz">
-                <img src="../../assets/Obras/2025/Brainwave Organism/4.png" class="gallery-thumb web" alt="Brainwave Organism">
+            <a href="../work/interactive/work1.html" class="gallery-item" data-category="web, data-viz">
+                <img src="../../assets/Obras/2025/Brainwave Organism/brainwave organism1.png" class="gallery-thumb web" alt="Brainwave Organism" fetchpriority="high" decoding="async">
                 <div class="gallery-title">Brainwave Organism</div>
+            </a>
+            <a href="../work/interactive/work2.html" class="gallery-item" data-category="web">
+                <img src="../../assets/Obras/2025/PRISMA.live/prisma live1.jpg" class="gallery-thumb web" alt="PRISMA.live" loading="lazy" decoding="async">
+                <div class="gallery-title">PRISMA.live</div>
             </a>
         </div>
     </div>
 
     <script src="../../js/gallery.js"></script>
+    <script src="../../js/i18n.js"></script>
 </body>
 </html>

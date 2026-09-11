@@ -16,9 +16,9 @@
             <div class="nav-item dropdown">
                 <a href="../selection.html" class="nav-btn active">WORKS</a>
                 <div class="dropdown-content">
-                    <a href="gallery-art.html">FINE ART & INSTALLATION</a>
+                    <a href="gallery-art.html">ARTWORKS</a>
                     <a href="gallery-digital.html">DIGITAL ART</a>
-                    <a href="gallery-web.html">INTERACTIVE & WEB</a>
+                    <a href="gallery-web.html">INTERACTIVE MEDIA</a>
                 </div>
             </div>
 
@@ -32,20 +32,28 @@
         <h1>DIGITAL ART</h1>
         
         <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterGallery('all')">ALL</button>
-            <button class="filter-btn" onclick="filterGallery('3d')">#3D</button>
-            <button class="filter-btn" onclick="filterGallery('ip-design')">#IP Design</button>
-            <button class="filter-btn" onclick="filterGallery('concept-art')">#Concept Art</button>
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="3d">#3D Modeling</button>
+            <button class="filter-btn" data-filter="game">#Game</button>
         </div>
 
         <div class="gallery-grid">
+            <a href="../work/digital_art/work4.html" class="gallery-item" data-category="game">
+                <img src="../../assets/Obras/2025/Veil of Light/veil of light logo.png" class="gallery-thumb digital gallery-thumb--contain gallery-thumb--veil-logo" alt="Veil of Light" fetchpriority="high" decoding="async">
+                <div class="gallery-title">Veil of Light</div>
+            </a>
+            <a href="../work/digital_art/work2.html" class="gallery-item" data-category="3d">
+                <img src="../../assets/Obras/2025/Chinese-style Painted World/chinese-style painted world1.jpg" class="gallery-thumb digital" alt="Chinese-style Painted World" decoding="async">
+                <div class="gallery-title">Chinese-style Painted World</div>
+            </a>
             <a href="../work/digital_art/work1.html" class="gallery-item" data-category="3d">
-                <img src="../../assets/Obras/2025/Casa Gillardi/3.jpg" class="gallery-thumb digital" alt="Casa Gilardi">
+                <img src="../../assets/Obras/2025/Casa Gillardi/casa gilardi1.jpg" class="gallery-thumb digital gallery-thumb--contain gallery-thumb--casa" alt="Casa Gilardi" decoding="async">
                 <div class="gallery-title">Casa Gilardi</div>
             </a>
         </div>
     </div>
 
     <script src="../../js/gallery.js"></script>
+    <script src="../../js/i18n.js"></script>
 </body>
 </html>
