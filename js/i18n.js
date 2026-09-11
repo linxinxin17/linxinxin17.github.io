@@ -6,7 +6,7 @@ const ui = {
         all: 'ALL', installation: '#Installation', interactiveArt: '#Interactive Art', sculpture: '#Sculpture',
         painting: '#Painting', performance: '#Performance', threeD: '#3D Modeling', game: '#Game',
         web: '#Web', dataViz: '#Data Visualisation', back: 'BACK', prev: 'PREV', next: 'NEXT', projectNavigation: 'Project navigation',
-        techniques: 'TECHNIQUES:', languageLabel: 'Change language', selectionTitle: 'Select Category', homeTitle: 'Creative Technologist', image: 'image', video: 'project video',
+        techniques: 'TECHNIQUES:', languageLabel: 'Change language', selectionTitle: 'Select Category', homeTitle: 'Multidisciplinary Artist', image: 'image', video: 'project video',
         profileTitle: 'Profile', labTitle: 'Lab', launch: 'Launch App', original: 'Original reference', copy: 'Xin Lin copy',
         themeToLight: 'Use light theme', themeToDark: 'Use dark theme',
         slogan: 'Multidisciplinary Artist / Creative Technologist <br>"Exploring the convergence of physical matter, digital minds, and biological signals."'
@@ -18,7 +18,7 @@ const ui = {
         all: 'TODO', installation: '#Instalación', interactiveArt: '#Arte Interactivo', sculpture: '#Escultura',
         painting: '#Pintura', performance: '#Performance', threeD: '#Modelado 3D', game: '#Juego',
         web: '#Web', dataViz: '#Visualización de Datos', back: 'VOLVER', prev: 'ANTERIOR', next: 'SIGUIENTE', projectNavigation: 'Navegación de proyectos',
-        techniques: 'TÉCNICAS:', languageLabel: 'Cambiar idioma', selectionTitle: 'Seleccionar categoría', homeTitle: 'Tecnóloga Creativa', image: 'imagen', video: 'vídeo del proyecto',
+        techniques: 'TÉCNICAS:', languageLabel: 'Cambiar idioma', selectionTitle: 'Seleccionar categoría', homeTitle: 'Artista multidisciplinar', image: 'imagen', video: 'vídeo del proyecto',
         profileTitle: 'Perfil', labTitle: 'Laboratorio', launch: 'Abrir aplicación', original: 'Referencia original', copy: 'Copia de Xin Lin',
         themeToLight: 'Usar tema claro', themeToDark: 'Usar tema oscuro',
         slogan: 'Artista multidisciplinar / Tecnóloga creativa <br>"Explorando la convergencia entre materia física, mentes digitales y señales biológicas."'
@@ -30,7 +30,7 @@ const ui = {
         all: '全部', installation: '#装置艺术', interactiveArt: '#互动艺术', sculpture: '#雕塑',
         painting: '#绘画', performance: '#行为艺术', threeD: '#3D建模', game: '#游戏',
         web: '#网页', dataViz: '#数据可视化', back: '返回', prev: '上一件', next: '下一件', projectNavigation: '作品切换',
-        techniques: '技术：', languageLabel: '切换语言', selectionTitle: '选择分类', homeTitle: '创意技术研究者', image: '图片', video: '项目视频',
+        techniques: '技术：', languageLabel: '切换语言', selectionTitle: '选择分类', homeTitle: '跨学科艺术家', image: '图片', video: '项目视频',
         profileTitle: '个人简介', labTitle: '实验室', launch: '打开应用', original: '原作参考', copy: '林欣临摹',
         themeToLight: '切换为白色主题', themeToDark: '切换为黑色主题',
         slogan: '跨学科艺术家 / 创意技术研究者 <br>“探索物质、数字思维与生物信号的交汇。”'
