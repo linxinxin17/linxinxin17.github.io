@@ -1,6 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$rootPrefix = $root.TrimEnd([System.IO.Path]::DirectorySeparatorChar) + [System.IO.Path]::DirectorySeparatorChar
 $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Parse("127.0.0.1"), 4173)
 $listener.Start()
 
@@ -56,9 +57,15 @@ try {
                 continue
             }
 
-            while ($reader.ReadLine() -ne "") { }
+            # A disconnected client returns null instead of an empty header line.
+            while ($null -ne ($headerLine = $reader.ReadLine()) -and $headerLine -ne "") { }
 
             $parts = $requestLine.Split(" ")
+            if ($parts.Length -lt 2) {
+                $body = [System.Text.Encoding]::UTF8.GetBytes("Bad Request")
+                Send-Response -Stream $stream -StatusCode 400 -StatusText "Bad Request" -Body $body
+                continue
+            }
             $method = $parts[0]
             $rawPath = $parts[1]
 
@@ -77,7 +84,7 @@ try {
             $safePath = $requestPath -replace "/", "\"
             $fullPath = [System.IO.Path]::GetFullPath((Join-Path $root $safePath))
 
-            if (-not $fullPath.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $fullPath -PathType Leaf)) {
+            if (-not $fullPath.StartsWith($rootPrefix, [System.StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $fullPath -PathType Leaf)) {
                 $body = [System.Text.Encoding]::UTF8.GetBytes("Not Found")
                 Send-Response -Stream $stream -StatusCode 404 -StatusText "Not Found" -Body $body
                 continue

@@ -715,7 +715,7 @@ function translatePage(language) {
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
 
     document.querySelectorAll('.brand').forEach((brand) => setText(brand, copy.brandName));
-    setText(document.querySelector('.hero-title'), copy.brandName);
+
 
     document.querySelectorAll('.nav-btn').forEach((link) => {
         const href = link.getAttribute('href') || '';
@@ -775,11 +775,6 @@ function translatePage(language) {
         document.title = `${copy[headingKey]} | ${copy.brandName}`;
     }
 
-    const slogan = document.querySelector('.hero-slogan');
-    if (slogan) {
-        slogan.innerHTML = copy.slogan;
-        document.title = `${copy.brandName} | ${copy.homeTitle}`;
-    }
 
     if (path.endsWith('pages/selection.html')) {
         setText(document.querySelector('.selection-heading'), copy.selectionTitle);
@@ -900,7 +895,6 @@ function setupNavigationDropdowns() {
         const trigger = dropdown.querySelector(':scope > .nav-btn');
         const menu = dropdown.querySelector(':scope > .dropdown-content');
         if (!trigger || !menu) return;
-        const isHomeNavigation = Boolean(dropdown.closest('.hero-container'));
 
         if (!menu.id) menu.id = `works-menu-${index + 1}`;
         trigger.setAttribute('aria-haspopup', 'true');
@@ -923,14 +917,8 @@ function setupNavigationDropdowns() {
             trigger.setAttribute('aria-expanded', 'true');
         };
 
-        if (!isHomeNavigation) {
-            trigger.addEventListener('click', (event) => {
-                if (!dropdown.classList.contains('open')) {
-                    event.preventDefault();
-                    openMenu();
-                }
-            });
-        }
+        // Keep WORKS as a normal, single-click link on every page. Hover opens
+        // the categories in CSS; ArrowDown provides keyboard access below.
 
         trigger.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowDown') {
