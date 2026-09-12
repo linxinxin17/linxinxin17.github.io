@@ -47,9 +47,9 @@
  const mode = document.querySelector('#space-mode');
  const reset = document.querySelector('#space-reset');
  const words = {
-  en:{welcome:'Welcome to my space.',subtitle:'Art, perception & everything in between.',hint:'Scroll to walk · Drag to look · Click a work to enter',touch:'Drag to explore · Tap a work to enter',list:'View list',space:'Enter space',pause:'Pause',resume:'Resume',reset:'Reset view'},
-  zh:{welcome:'欢迎来到我的空间。',subtitle:'艺术、感知，以及其间的一切。',hint:'滚轮前进 / 后退 · 拖动转头 · 点击作品进入',touch:'拖动探索 · 点击作品进入',list:'列表浏览',space:'进入空间',pause:'暂停运动',resume:'继续运动',reset:'回到原点'},
-  es:{welcome:'Bienvenidos a mi espacio.',subtitle:'Arte, percepción y todo lo que hay entre ambos.',hint:'Mueve para mirar · Arrastra para explorar · Desplázate para viajar',touch:'Arrastra para explorar · Toca una obra para entrar',list:'Ver lista',space:'Entrar al espacio',pause:'Pausar',resume:'Continuar',reset:'Reiniciar vista'}
+  en:{welcome:'Welcome to my space.',subtitle:'Art, perception & everything in between.',hint:'Scroll to walk · Drag to look · Click a work to enter',touch:'Drag to look · Spread / pinch to travel · Tap a work',list:'View list',space:'Enter space',pause:'Pause',resume:'Resume',reset:'Reset view'},
+  zh:{welcome:'欢迎来到我的空间。',subtitle:'艺术、感知，以及其间的一切。',hint:'滚轮前进 / 后退 · 拖动转头 · 点击作品进入',touch:'单指转头 · 双指张开前进 / 捏合后退 · 点击作品进入',list:'列表浏览',space:'进入空间',pause:'暂停运动',resume:'继续运动',reset:'回到原点'},
+  es:{welcome:'Bienvenidos a mi espacio.',subtitle:'Arte, percepción y todo lo que hay entre ambos.',hint:'Mueve para mirar · Arrastra para explorar · Desplázate para viajar',touch:'Arrastra para mirar · Separa / junta dos dedos para avanzar / retroceder · Toca una obra',list:'Ver lista',space:'Entrar al espacio',pause:'Pausar',resume:'Continuar',reset:'Reiniciar vista'}
  };
  let paused=motion.matches, list=motion.matches, yaw=0, targetYaw=0, tilt=0, targetTilt=0, travel=0, targetTravel=0, lookX=0,lookY=0,px=0,py=0,drag=null,dragged=false,frame=0,last=0;
  const world=document.querySelector('.space-works');
@@ -144,10 +144,25 @@
  }
  function wake(){if(!frame){last=performance.now();frame=requestAnimationFrame(render);}}
  function explore(){document.body.classList.add('exploring');}
+ const touches = new Map();
+ let pinchDistance = null, pinchGesture = false;
+ function touchDistance(){
+  const [a,b] = [...touches.values()];
+  return a && b ? Math.hypot(a.x-b.x,a.y-b.y) : null;
+ }
  // Capture the original link (or background) immediately so a drag cannot be lost
  // to a transformed surface, a native link drag, or leaving the viewport.
  scene.addEventListener('pointerdown',e=>{
-  if(list||e.button!==0||!e.isPrimary)return;
+  if(list||e.button!==0)return;
+  if(e.pointerType==='touch'){
+   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   if(touches.size>1){
+    e.preventDefault();release();dragged=true;pinchGesture=true;
+    pinchDistance=touchDistance();return;
+   }
+   if(pinchGesture)return;
+  }
+  if(!e.isPrimary)return;
   e.preventDefault();
   yaw=targetYaw=yaw+px*.17;tilt=targetTilt=Math.max(-.7,Math.min(.7,tilt-py*.28));lookX=lookY=px=py=0;
   const capture=e.target.closest('.space-work')||scene;
@@ -156,6 +171,20 @@
  });
  scene.addEventListener('pointermove',e=>{
   if(list)return;
+  if(e.pointerType==='touch'&&touches.has(e.pointerId)){
+   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   if(pinchGesture){
+    e.preventDefault();
+    const distance=touchDistance();
+    if(distance>=8&&pinchDistance>=8){
+     if(paused){paused=false;translate();}
+     targetTravel=Math.max(0,Math.min(maxTravel,targetTravel+Math.log(distance/pinchDistance)*2200));
+     explore();wake();
+    }
+    pinchDistance=distance;
+    return;
+   }
+  }
   if(drag&&drag.id===e.pointerId){
    const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
    if(dragged||Math.hypot(dx,dy)>4){
@@ -163,16 +192,28 @@
     dragged=true;scene.classList.add('dragging');
     targetYaw=drag.yaw+dx*.004;targetTilt=Math.max(-.7,Math.min(.7,drag.tilt-dy*.0035));wake();
    }
-  }else if(!paused){lookX=(e.clientX/scene.clientWidth-.5)*2;lookY=(e.clientY/scene.clientHeight-.5)*2;wake();}
+  }else if(!paused&&e.pointerType!=='touch'){lookX=(e.clientX/scene.clientWidth-.5)*2;lookY=(e.clientY/scene.clientHeight-.5)*2;wake();}
  });
  function release(){
   const previous=drag;drag=null;scene.classList.remove('dragging');
   if(previous?.capture.hasPointerCapture(previous.id))previous.capture.releasePointerCapture(previous.id);
  }
- scene.addEventListener('pointerup',release);
- scene.addEventListener('pointercancel',()=>{release();dragged=false;});
+ function endPointer(e){
+  touches.delete(e.pointerId);
+  if(pinchGesture){
+   // Do not turn or open a work when the first finger of a pinch lifts.
+   pinchDistance=touchDistance();
+   if(!touches.size)pinchGesture=false;
+   return;
+  }
+  if(drag?.id===e.pointerId)release();
+  if(e.type==='pointercancel')dragged=false;
+ }
+ function clearGesture(){release();touches.clear();pinchDistance=null;pinchGesture=false;}
+ scene.addEventListener('pointerup',endPointer);
+ scene.addEventListener('pointercancel',endPointer);
  scene.addEventListener('lostpointercapture',()=>{if(drag)release();});
- window.addEventListener('blur',release);
+ window.addEventListener('blur',clearGesture);
  scene.addEventListener('click',e=>{if(dragged){e.preventDefault();e.stopPropagation();dragged=false;}},true);
  scene.addEventListener('dragstart',e=>e.preventDefault());
  scene.addEventListener('pointerleave',()=>{if(!drag){lookX=0;lookY=0;wake();}});
@@ -180,8 +221,8 @@
  scene.addEventListener('wheel',e=>{if(list||paused)return;e.preventDefault();targetYaw+=e.deltaX*.001;targetTravel=Math.max(0,Math.min(maxTravel,targetTravel+e.deltaY*1.8));explore();wake();},{passive:false});
  scene.addEventListener('keydown',e=>{if(paused||list)return;const keys=['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'];if(!keys.includes(e.key))return;e.preventDefault();if(e.key==='ArrowLeft')targetYaw-=.18;if(e.key==='ArrowRight')targetYaw+=.18;if(e.key==='ArrowUp')targetTravel=Math.min(maxTravel,targetTravel+180);if(e.key==='ArrowDown')targetTravel=Math.max(0,targetTravel-180);explore();wake();});
  pause.addEventListener('click',()=>{paused=!paused;translate();wake();});
- reset.addEventListener('click',()=>{yaw=targetYaw=tilt=targetTilt=travel=targetTravel=lookX=lookY=px=py=0;document.body.classList.remove('exploring');wake();});
- mode.addEventListener('click',()=>{list=!list;document.body.classList.toggle('list-mode',list);translate();wake();});
+ reset.addEventListener('click',()=>{clearGesture();yaw=targetYaw=tilt=targetTilt=travel=targetTravel=lookX=lookY=px=py=0;document.body.classList.remove('exploring');wake();});
+ mode.addEventListener('click',()=>{clearGesture();list=!list;document.body.classList.toggle('list-mode',list);translate();wake();});
  motion.addEventListener('change',e=>{paused=e.matches;list=e.matches;document.body.classList.toggle('list-mode',list);translate();wake();});
  document.addEventListener('visibilitychange',()=>{scene.classList.toggle('motion-paused',document.hidden||paused||list);if(document.hidden){cancelAnimationFrame(frame);frame=0;}else wake();});
  window.addEventListener('resize',wake);
