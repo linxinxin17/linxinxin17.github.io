@@ -6,9 +6,10 @@
  // when opened via file:// or when the gallery request is unavailable.
  const shelf=document.querySelector('.space-works');
  const mobile=matchMedia('(pointer:coarse)').matches;
- let previews={};
+ let previews={},reflectionSources={};
  if(mobile&&location.protocol!=='file:'){
-  try{const response=await fetch('assets/space-previews/manifest.json');if(response.ok)previews=await response.json();}catch{}
+  const readManifest=async name=>{try{const response=await fetch('assets/space-previews/'+name+'.json');return response.ok?await response.json():{};}catch{return {};}};
+  [previews,reflectionSources]=await Promise.all([readManifest('manifest'),readManifest('reflections')]);
  }
  function coverSource(src){
   const key=decodeURIComponent(new URL(src,location.href).pathname).replace(/^\//,'');
@@ -94,7 +95,16 @@
   c.stroke();
   c.strokeStyle=light?'rgba(79,105,120,.24)':'rgba(170,198,210,.25)';c.lineWidth=1;c.setLineDash([3,12]);c.beginPath();line(0,-1750,0,roadEnd);c.stroke();c.setLineDash([]);
  }
- const reflections=cards.map(card=>{const reflection=document.createElement('div');reflection.className='room-reflection';reflection.setAttribute('aria-hidden','true');const img=card.querySelector('img').cloneNode();img.alt='';reflection.append(img);world.append(reflection);return reflection;});
+ const reflections=cards.map(card=>{
+  const reflection=document.createElement('div');reflection.className='room-reflection';reflection.setAttribute('aria-hidden','true');
+  const original=card.querySelector('img'),img=document.createElement('img');img.alt='';img.decoding='async';img.draggable=false;
+  const baked=reflectionSources[new URL(original.src).pathname.replace(/^\//,'')];
+  if(baked){
+   reflection.classList.add('room-reflection-baked');img.src=baked;
+   img.addEventListener('error',()=>{reflection.classList.remove('room-reflection-baked');img.src=original.src;},{once:true});
+  }else img.src=original.src;
+  reflection.append(img);world.append(reflection);return reflection;
+ });
  cards.forEach(card=>{const front=document.createElement('div');front.className='room-art-front';while(card.firstChild)front.append(card.firstChild);card.append(front);const side=document.createElement('span');side.className='room-art-side';side.setAttribute('aria-hidden','true');const top=document.createElement('span');top.className='room-art-top';top.setAttribute('aria-hidden','true');const back=document.createElement('span');back.className='room-art-back';back.setAttribute('aria-hidden','true');card.append(side,top,back);});
  const exhibits = cards.map((card, i) => {
   const {row, side} = placements[i];

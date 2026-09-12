@@ -5,7 +5,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote
 
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageFilter, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets' / 'space-previews'
@@ -24,7 +24,7 @@ class Covers(HTMLParser):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    manifest = {}
+    manifest, reflections = {}, {}
     original_pixels = preview_pixels = 0
     for gallery in sorted((ROOT / 'pages/gallery').glob('gallery-*.html')):
         parser = Covers()
@@ -41,8 +41,27 @@ def main():
                 image.thumbnail((960, 1200), Image.Resampling.LANCZOS)
                 preview_pixels += image.width * image.height
                 image.save(OUT / name, 'WEBP', quality=87, method=6)
+                # Match the CSS cover crop, padding, blur and floor fade offline.
+                reflection = Image.new('RGBA', (460, 650))
+                reflection.paste(ImageOps.fit(image, (442, 546), Image.Resampling.LANCZOS), (9, 9))
+                reflection = reflection.filter(ImageFilter.GaussianBlur(2.5))
+                stops = [(0, 0), (.32, 0), (.65, 51), (.9, 187), (1, 255)]
+                alpha = []
+                for y in range(650):
+                    t = y / 649
+                    for (a, low), (b, high) in zip(stops, stops[1:]):
+                        if a <= t <= b:
+                            alpha.append(round(low + (high - low) * (t - a) / (b - a)))
+                            break
+                mask = Image.new('L', (1, 650))
+                mask.putdata(alpha)
+                reflection.putalpha(ImageChops.multiply(reflection.getchannel('A'), mask.resize((460, 650))))
+                reflection_name = name.replace('.webp', '-reflection.webp')
+                reflection.save(OUT / reflection_name, 'WEBP', quality=80, method=6)
             manifest[key] = 'assets/space-previews/' + name
+            reflections[manifest[key]] = 'assets/space-previews/' + reflection_name
     (OUT / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (OUT / 'reflections.json').write_text(json.dumps(reflections, indent=2) + '\n', encoding='utf-8')
     print(f'{len(manifest)} covers; decoded pixels {original_pixels:,} -> {preview_pixels:,}')
 
 
