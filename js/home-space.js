@@ -5,6 +5,15 @@
  // Gallery pages are the source of truth. Static homepage cards remain a fallback
  // when opened via file:// or when the gallery request is unavailable.
  const shelf=document.querySelector('.space-works');
+ const mobile=matchMedia('(pointer:coarse)').matches;
+ let previews={};
+ if(mobile&&location.protocol!=='file:'){
+  try{const response=await fetch('assets/space-previews/manifest.json');if(response.ok)previews=await response.json();}catch{}
+ }
+ function coverSource(src){
+  const key=decodeURIComponent(new URL(src,location.href).pathname).replace(/^\//,'');
+  return previews[key]||src;
+ }
  const snapshotLinks=new Set([...shelf.querySelectorAll('a')].map(link=>link.getAttribute('href')));
  if(location.protocol!=='file:'){
   try{
@@ -23,7 +32,7 @@
    const seen=new Set();
    items.forEach((item,index)=>{if(seen.has(item.href))return;seen.add(item.href);
     const card=document.createElement('a');card.className='space-work';card.href=item.href;card.dataset.year=item.year;card.dataset.category=item.category;
-    const img=document.createElement('img');img.fetchPriority=index<3?'high':'auto';img.src=item.src;img.alt=item.title;img.decoding='sync';img.draggable=false;
+    const img=document.createElement('img');img.fetchPriority=index<3?'high':'auto';img.src=coverSource(item.src);img.alt=item.title;img.decoding='async';img.draggable=false;
     const caption=document.createElement('span');caption.className='space-caption';const title=document.createElement('span');title.className='space-work-title';title.textContent=item.title;
     const arrow=document.createElement('span');arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');caption.append(title,arrow);card.append(img,caption);fragment.append(card);
    });
@@ -31,6 +40,7 @@
   }catch(error){console.warn('Using the local portfolio snapshot:',error.message);}
  }
  const cards=[...shelf.querySelectorAll('.space-work')].sort((a,b)=>Number(b.dataset.year)-Number(a.dataset.year));
+ cards.forEach(card=>{const img=card.querySelector('img');if(img.dataset.spaceSrc)img.src=coverSource(img.dataset.spaceSrc);});
  cards.forEach(card=>shelf.append(card));
  let row=0,slot=0,previousYear=null;
  const years=[];
@@ -131,12 +141,14 @@
    if(front.style.display!==frontDisplay)front.style.display=frontDisplay;
    if(back.style.display!==backDisplay)back.style.display=backDisplay;
    const distance=-(sinHeading*-x+cosHeading*(z+travel));
-   // Cull only after the entire slab passes behind the camera, not at its centre.
-   const visible=distance>-300;
+   // Keep the whole slab until it passes behind the camera. On touch devices,
+   // also limit distant layers to keep the compositor's texture budget bounded.
+   const visible=distance>-300&&(!mobile||Math.abs(z+travel)<8000);
    const visibility=visible?'visible':'hidden';
    if(card.style.visibility!==visibility){card.style.visibility=visibility;card.setAttribute('aria-hidden',String(!visible));card.tabIndex=visible?0:-1;}
    if(card.style.transform!==transform)card.style.transform=transform;
-   if(reflection.style.visibility!==visibility)reflection.style.visibility=visibility;
+   const reflected=visible&&(!mobile||Math.abs(z+travel)<4000)?'visible':'hidden';
+   if(reflection.style.visibility!==reflected)reflection.style.visibility=reflected;
    if(reflection.style.transform!==reflectionTransform)reflection.style.transform=reflectionTransform;
   });
   if(!list)drawGround(w,scene.clientHeight,f,heading,pitch);
@@ -150,23 +162,25 @@
   const [a,b] = [...touches.values()];
   return a && b ? Math.hypot(a.x-b.x,a.y-b.y) : null;
  }
- // Capture the original link (or background) immediately so a drag cannot be lost
- // to a transformed surface, a native link drag, or leaving the viewport.
+ // Touch capture stays on the scene even when a panel moves out of view.
  scene.addEventListener('pointerdown',e=>{
-  if(list||e.button!==0)return;
+  if(list||e.button!==0||e.target.closest('button'))return;
   if(e.pointerType==='touch'){
+   if(e.isPrimary)clearGesture();
    touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+   scene.setPointerCapture(e.pointerId);
    if(touches.size>1){
     e.preventDefault();release();dragged=true;pinchGesture=true;
+    touches.forEach((_,id)=>scene.setPointerCapture(id));
     pinchDistance=touchDistance();return;
    }
    if(pinchGesture)return;
   }
-  if(!e.isPrimary)return;
+  if(!e.isPrimary&&e.pointerType!=='touch')return;
   e.preventDefault();
   yaw=targetYaw=yaw+px*.17;tilt=targetTilt=Math.max(-.7,Math.min(.7,tilt-py*.28));lookX=lookY=px=py=0;
-  const capture=e.target.closest('.space-work')||scene;
-  drag={x:e.clientX,y:e.clientY,yaw:targetYaw,tilt:targetTilt,id:e.pointerId,capture};dragged=false;
+  const capture=e.pointerType==='touch'?scene:e.target.closest('.space-work')||scene;
+  drag={x:e.clientX,y:e.clientY,yaw:targetYaw,tilt:targetTilt,id:e.pointerId,capture,link:e.target.closest('.space-work')};dragged=false;
   capture.setPointerCapture(e.pointerId);
  });
  scene.addEventListener('pointermove',e=>{
@@ -201,18 +215,37 @@
  function endPointer(e){
   touches.delete(e.pointerId);
   if(pinchGesture){
-   // Do not turn or open a work when the first finger of a pinch lifts.
    pinchDistance=touchDistance();
-   if(!touches.size)pinchGesture=false;
+   if(touches.size<2){
+    pinchGesture=false;
+    const remaining=touches.entries().next().value;
+    if(remaining){
+     const [id,point]=remaining;
+     // Rebase without a jump; the remaining finger can immediately look around.
+     targetYaw=yaw;targetTilt=tilt;
+     drag={x:point.x,y:point.y,yaw,tilt,id,capture:scene};
+    }
+   }
    return;
   }
-  if(drag?.id===e.pointerId)release();
+  if(drag?.id===e.pointerId){
+   const tap=e.pointerType==='touch'&&e.type==='pointerup'&&!dragged?drag.link:null;
+   release();
+   if(tap)tap.click();
+  }
   if(e.type==='pointercancel')dragged=false;
  }
- function clearGesture(){release();touches.clear();pinchDistance=null;pinchGesture=false;}
- scene.addEventListener('pointerup',endPointer);
- scene.addEventListener('pointercancel',endPointer);
- scene.addEventListener('lostpointercapture',()=>{if(drag)release();});
+ function clearGesture(){
+  const ids=[...touches.keys()];touches.clear();pinchDistance=null;pinchGesture=false;release();
+  ids.forEach(id=>{if(scene.hasPointerCapture(id))scene.releasePointerCapture(id);});
+ }
+ window.addEventListener('pointerup',endPointer);
+ window.addEventListener('pointercancel',endPointer);
+ scene.addEventListener('lostpointercapture',e=>{
+  if(scene.hasPointerCapture(e.pointerId))return;
+  if(touches.has(e.pointerId))endPointer(e);
+  else if(drag?.id===e.pointerId)release();
+ });
  window.addEventListener('blur',clearGesture);
  scene.addEventListener('click',e=>{if(dragged){e.preventDefault();e.stopPropagation();dragged=false;}},true);
  scene.addEventListener('dragstart',e=>e.preventDefault());
@@ -224,7 +257,7 @@
  reset.addEventListener('click',()=>{clearGesture();yaw=targetYaw=tilt=targetTilt=travel=targetTravel=lookX=lookY=px=py=0;document.body.classList.remove('exploring');wake();});
  mode.addEventListener('click',()=>{clearGesture();list=!list;document.body.classList.toggle('list-mode',list);translate();wake();});
  motion.addEventListener('change',e=>{paused=e.matches;list=e.matches;document.body.classList.toggle('list-mode',list);translate();wake();});
- document.addEventListener('visibilitychange',()=>{scene.classList.toggle('motion-paused',document.hidden||paused||list);if(document.hidden){cancelAnimationFrame(frame);frame=0;}else wake();});
+ document.addEventListener('visibilitychange',()=>{scene.classList.toggle('motion-paused',document.hidden||paused||list);if(document.hidden){clearGesture();cancelAnimationFrame(frame);frame=0;}else wake();});
  window.addEventListener('resize',wake);
  new MutationObserver(wake).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
  new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
