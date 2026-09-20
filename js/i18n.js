@@ -401,7 +401,7 @@ const profileCopy = {
             { date: 'Feb 2025', title: 'Spanish Radio Art 101st Anniversary Exhibition', detail: 'SGAE, Valencia, Spain' },
             { date: 'Jun 2024', title: 'Pengci, Ceramic Works Exhibition', detail: 'Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts' },
             { date: 'Jun 2024', title: 'Liu Guang Li Ying, Glass Works Exhibition', detail: 'Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts' },
-            { date: 'Jun 2023', title: 'Yi Wu Yi Wu, Materials Exhibition', detail: 'Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts' },
+            { date: 'Sep 2023', title: 'Yi Wu Yi Wu, Materials Exhibition', detail: 'Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts' },
             { date: 'Jun 2023', title: 'Roent, Casting Works Exhibition', detail: 'Ribarroja Municipal Art Gallery, Spain' },
             { date: 'Feb 2023', title: '15th MundoArti International Virtual Gallery Exhibition', detail: 'MundoArti platform' }
         ],
@@ -436,7 +436,7 @@ const profileCopy = {
             { date: 'Feb 2025', title: 'Exposición del 101.º aniversario del arte radiofónico español', detail: 'SGAE, Valencia, España' },
             { date: 'Jun 2024', title: 'Pengci, exposición de obras cerámicas', detail: 'Galería del Corredor, Departamento de Escultura, Central Academy of Fine Arts' },
             { date: 'Jun 2024', title: 'Liu Guang Li Ying, exposición de obras en vidrio', detail: 'Galería del Corredor, Departamento de Escultura, Central Academy of Fine Arts' },
-            { date: 'Jun 2023', title: 'Yi Wu Yi Wu, exposición de materiales', detail: 'Galería del Corredor, Departamento de Escultura, Central Academy of Fine Arts' },
+            { date: 'Sep 2023', title: 'Yi Wu Yi Wu, exposición de materiales', detail: 'Galería del Corredor, Departamento de Escultura, Central Academy of Fine Arts' },
             { date: 'Jun 2023', title: 'Roent, exposición de fundición', detail: 'Galería Municipal de Arte de Ribarroja, España' },
             { date: 'Feb 2023', title: '15.ª Exposición Internacional de Galería Virtual MundoArti', detail: 'Plataforma MundoArti' }
         ],
@@ -471,7 +471,7 @@ const profileCopy = {
             { date: '2025.02', title: '西班牙广播艺术 101 周年展览', detail: 'SGAE，西班牙瓦伦西亚' },
             { date: '2024.06', title: '《碰瓷》陶瓷作品展', detail: '中央美术学院雕塑系通道画廊' },
             { date: '2024.06', title: '《琉光璃影》玻璃作品展', detail: '中央美术学院雕塑系通道画廊' },
-            { date: '2023.06', title: '《以物以物》材料作品展', detail: '中央美术学院雕塑系通道画廊' },
+            { date: '2023.09', title: '《以物以物》材料作品展', detail: '中央美术学院雕塑系通道画廊' },
             { date: '2023.06', title: 'Roent 铸造作品展', detail: '西班牙 Ribarroja 市立艺术画廊' },
             { date: '2023.02', title: '第 15 届 MundoArti 国际虚拟画廊展', detail: 'MundoArti 平台' }
         ],

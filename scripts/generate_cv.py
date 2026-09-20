@@ -201,7 +201,7 @@ def create_cv():
         ("Feb 2025", "Spanish Radio Art 101st Anniversary Exhibition", "SGAE, Valencia, Spain", None),
         ("Jun 2024", "Pengci, Ceramic Works Exhibition", "Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts", None),
         ("Jun 2024", "Liu Guang Li Ying, Glass Works Exhibition", "Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts", None),
-        ("Jun 2023", "Yi Wu Yi Wu, Materials Exhibition", "Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts", None),
+        ("Sep 2023", "Yi Wu Yi Wu, Materials Exhibition", "Corridor Gallery, Department of Sculpture, Central Academy of Fine Arts", None),
         ("Jun 2023", "Roent, Casting Works Exhibition", "Ribarroja Municipal Art Gallery, Spain", None),
         ("Feb 2023", "15th MundoArti International Virtual Gallery Exhibition", "MundoArti platform", None),
     ]
