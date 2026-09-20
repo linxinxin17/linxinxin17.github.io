@@ -469,9 +469,9 @@ const profileCopy = {
             { date: '2026.01', title: 'Queerxata 艺术工作坊', role: '策展', detail: 'Centre del Carme Cultura Contemporània，西班牙瓦伦西亚' },
             { date: '2025.10', title: 'Volumens 2025 国际艺术节', detail: 'Centre del Carme Cultura Contemporània，西班牙瓦伦西亚' },
             { date: '2025.02', title: '西班牙广播艺术 101 周年展览', detail: 'SGAE，西班牙瓦伦西亚' },
-            { date: '2024.06', title: '《碰瓷》陶瓷作品展', detail: '中央美术学院雕塑系走廊画廊' },
-            { date: '2024.06', title: '《琉光璃影》玻璃作品展', detail: '中央美术学院雕塑系走廊画廊' },
-            { date: '2023.06', title: '《以物以物》材料作品展', detail: '中央美术学院雕塑系走廊画廊' },
+            { date: '2024.06', title: '《碰瓷》陶瓷作品展', detail: '中央美术学院雕塑系通道画廊' },
+            { date: '2024.06', title: '《琉光璃影》玻璃作品展', detail: '中央美术学院雕塑系通道画廊' },
+            { date: '2023.06', title: '《以物以物》材料作品展', detail: '中央美术学院雕塑系通道画廊' },
             { date: '2023.06', title: 'Roent 铸造作品展', detail: '西班牙 Ribarroja 市立艺术画廊' },
             { date: '2023.02', title: '第 15 届 MundoArti 国际虚拟画廊展', detail: 'MundoArti 平台' }
         ],
